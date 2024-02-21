@@ -1,44 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import Input from "@mui/material/Input";
+import InputLabel from "@mui/material/InputLabel";
 
-import './StringInputForm.scss'
+import "./StringInputForm.scss";
 
 export default function StringInputForm() {
-    const [orderedString, setOrderedString] = useState('');
+    const [inputString, setInputString] = useState('')
+  const [orderedString, setOrderedString] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    const form = e.target;
-    const formData = new FormData(form);
-
-    const formJson = Object.fromEntries(formData.entries());
-    const sortedInputString = (formJson.myInput as string).toLowerCase().split('').sort().join('');
-    setOrderedString(sortedInputString)
-    console.log(formData.entries(), formJson.myInput);
+    const sortedInputString = inputString
+      .toLowerCase()
+      .split("")
+      .sort()
+      .join("");
+    setOrderedString(sortedInputString);
+    console.log(sortedInputString);
+    setInputString('');
   }
 
   return (
     <>
-      <div>
-      Ordered: {orderedString}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Text input: <input name="myInput" defaultValue="Some initial value" />
-        </label>
-        <Button type="reset" variant="outlined">Reset</Button>
-        <Button type="submit" variant="outlined">Submit</Button>
-        {/* <button type="reset">Reset form</button>
-        <button type="submit">Submit form</button> */}
-      </form>
+      <div className="FormContainer">
+        <form onSubmit={handleSubmit}>
+          <FormControl variant="standard">
+              Input String
+            {/* <InputLabel>Input String</InputLabel> */}
+            <Input value={inputString} onChange={(e) => setInputString(e.target.value)} />
+          </FormControl>
+          <Button variant="outlined" type="submit" disabled={!inputString}>
+            Submit
+          </Button>
+        </form>
+        <div className="FormResultDisplay">Ordered: {orderedString}</div>
       </div>
     </>
   );
 }
 
-
-
 // spaces?
 // just alphabets? or numbers and symbols too
-// 
