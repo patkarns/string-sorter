@@ -87,7 +87,3 @@ export default function StringSorter() {
     </>
   );
 }
-
-// spaces?
-// just alphabets? or numbers and symbols too
-// max
