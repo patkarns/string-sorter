@@ -1,10 +1,10 @@
-import StringInputForm from './components/StringInputForm';
+import StringSorter from './components/StringSorter';
 import './App.scss'
 
 function App() {
   return (
     <>
-        <StringInputForm/>
+        <StringSorter/>
     </>
   )
 }
